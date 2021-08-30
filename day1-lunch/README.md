@@ -11,3 +11,7 @@ $cp qbb2021/data/*.sizes  qbb2021-answers/day1-lunch
 # observations: chrM has the least features (13)
 # chr3R has the most features (7246)
 
+4B)
+~/qbb2021-answers/day1-lunch/$bedtools intersect -wb -a k9me3.bed -b *.bed | cut -f 1 | uniq -c > chr-with-fbgenes-k9.txt  
+#observations: chromosome X has the most overlap (6387) 
+#chromosome Y has the least overlap (36)
