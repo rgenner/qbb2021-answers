@@ -1,0 +1,17 @@
+1702
+2554
+2128
+1915
+2021
+2074
+2101
+2114
+2107
+2104
+2102
+2103
+position of gene closest to mutation: 2103
+number of iterations to find gene: 12
+name of gene closest to mutation: "pre-mod(mdg4)-N"
+starting position of gene closest to mutation: 21370918
+ending position of gene closest to mutation: 21373575
