@@ -24,27 +24,36 @@ for line in f:
 
 lo = 0
 hi = int(len(genes))-1
-mid = int(lo + hi) // 2
+mid = int(lo + hi) // 2 #makes integer (floor function)
 
 count = 0
-
 condition = True
+tally = 0
 
-while condition == True:
+#while condition == True:
+while mut_pos not in range(genes[mid][1],genes[mid][2]):
+
     print(mid)
     old_mid = mid
-    count += 1
-    print(count)
-    if mut_pos in range(genes[mid][1],genes[mid][2]):
-        condition = False
-    elif mut_pos < genes[mid][1]:
+    tally += 1
+
+    if mut_pos < genes[mid][1]:
         hi = mid -1
         mid = int(lo + hi) // 2
     elif mut_pos > genes[mid][2]:
         lo = mid + 1
         mid = int(lo + hi) // 2
     if mid == old_mid:
-        condition = False
+        break
+
+print("position of gene closest to mutation:", mid)
+print("number of iterations to find gene:", tally)
+print("name of gene closest to mutation:", genes[mid][0])
+print("starting position of gene closest to mutation:", genes[mid][1])
+print("ending position of gene closest to mutation:", genes[mid][2])
+
+
+
 
 
 
