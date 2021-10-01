@@ -1,10 +1,10 @@
-$mkdir week3
+$mkdir week3	
 $cd week3
 
 Download files: 
-$wget https://github.com/bxlab/qbb2021/raw/main/week3/genotypes.vcf
-$wget https://github.com/bxlab/qbb2021/raw/main/week3/GS451_IC50.txt
-$wget https://github.com/bxlab/qbb2021/raw/main/week3/CB1908_IC50.txt
+wget https://github.com/bxlab/qbb2021/raw/main/week3/genotypes.vcf
+wget https://github.com/bxlab/qbb2021/raw/main/week3/GS451_IC50.txt
+wget https://github.com/bxlab/qbb2021/raw/main/week3/CB1908_IC50.txt
 
 
 1)	Generate genotypes.vcf using plink -pca
@@ -26,37 +26,28 @@ $plink --vcf genotypes.vcf –freq –-out freq
 
 	For GS541_IC50 phenotype: 
 
-$plink --vcf genotypes.vcf --assoc --pheno GS451_IC50.txt --covar plink.eigenvec --covar-number 1-10 --allow-no-sex
+$plink --vcf genotypes.vcf --linear --allow-no-sex --pheno GS451_IC50.txt --covar plink.eigenvec --out GS451_data
 
-	output = plink.qassoc
-	rename: 
-	$mv plink.qassoc GSplink.qassoc
+	output = GS451_data.assoc.linear
 
 	For CB1908_IC50 phenotype: 
 
-$plink --vcf genotypes.vcf --assoc –pheno CB1908_IC50.txt --covar plink.eigenvec --covar-number 1-10 --allow-no-sex
+$plink --vcf genotypes.vcf --linear --allow-no-sex --pheno CB1908_IC50.txt --covar plink.eigenvec --out CB1908_data
 
-	output = plink.qassoc
-	rename: 
-	$mv plink.qassoc CBplink.qassoc
+	output = CB1908_data.assoc.linear
 
 
 4)	Generate QQ and Manhattan plots for each phenotype
 
 $pip install qmplot 
-	https://github.com/ShujiaHuang/qmplot
+https://github.com/ShujiaHuang/qmplot
  
 Rest was done in Jupyter Notebook
 
 
-5)	Make genotype ~ phenotype boxplot of top associated SNP  
+5)	Generate box plots of top associated SNP
 
-	For phenotype GS541_IC50:
+	In terminal, grep lines for rs10876043 from genotypes.vcf
+$grep rs10876043 genotypes.vcf > topcb.txt
 
-$plink --vcf genotypes.vcf --snp rs7257475 --recode A --out rs7257475_genotypes
-
-	File generated: 
-	Rs7257475_genotypes.raw   < used in ___________________
-
-Rest was done in Jupyter Notebook 
-
+	Rest done in Jupyter Notebook
