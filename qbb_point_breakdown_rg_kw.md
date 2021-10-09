@@ -1,6 +1,6 @@
 # qbb2021 points available for each assignment
 
-Final grade: B (86%)
+Final grade: A (92%)
 
 ## Day 1 lunch -- 4 pts possible. 4/4
 
@@ -11,7 +11,7 @@ Final grade: B (86%)
 
 * Note: half point for not including a file or commands in README for each subpart
 
-## Day 1 homework -- 5 pts possible. 4/5
+## Day 1 homework -- 5 pts possible. 5/5
 
 1. number of alignments script + output --> +1
 2. perfect match alignments script + output --> +1
@@ -31,10 +31,10 @@ Final grade: B (86%)
 
 * Note: output points are only for presence/absence. correctness points for script
 
-## Day 2 homework -- 4 pts possible. 3/4
+## Day 2 homework -- 4 pts possible. 4/4
 
 1. python script (2 pts) --> +2
-2. fasta parser (either as separate file or within python script) --> +0
+2. fasta parser (either as separate file or within python script) --> +1
 3. first 1000 lines of the script output (1/4 of a point if not 1K) --> +1
 
 * Note: output points are only for presence/absence. correctness points for script
