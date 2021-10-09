@@ -7,7 +7,8 @@ fs = open("/Users/cmdb/qbb2021-answers/day1-evening/SRR072893.sam", "r")
 # core data:
 # SRR072893.1692271	 0	 2L	   7583	  60   40M	 * 	    0    	AGAGAACCCACGTTTGAACAAGTATCGGCGTGTGGACAAC	<9799:>A>?:?:?>A?>><1;297-00+/C@@C8/>@4AS:i:0	XN:i:0	XM:i:0	XO:i:0	XG:i:0	NM:i:0	MD:Z:40	YT:Z:UU	NH:i:1
 #      QNAME       FLAG RNAME   POS  MAPQ  CIGAR RNEXT? PNEXT?  SEQ?                                        QUAL? (ASCII)
-sam = [] #create empty list sam[]
+sam = [] #create empty list sam[
+unique = []
 num_alignments = 0 #start counter for total number of alignments
 num_perfect_alignments = 0 #start counter for number of perfect alignments
 sum_mapq = 0
@@ -37,9 +38,20 @@ for line in fs:
         num_2L += 1 # add to num_2L count
     # Count number of reads that start their alignment on chromosome 2L
     # between base 10000 and 20000 (inclusive)
+    unique = [(fields [3], fields [5])] #create list of unique tuples
+    duplicates = num_alignments-len(unique) 
 
 fs.close
 print("total number of alignments: ", num_alignments)
 print("total number of perfect alignments: ", num_perfect_alignments)
 print("average MAPQ scores: ", (sum_mapq / num_alignments))
 print("number of reads on chromosome 2L between bases 1000 and 2000: ", num_2L)
+print("number of replicates", duplicates)
+
+#Count how many potential PCR duplicates are present.
+#These are reads that map to the exact same location.
+#Let's assume there is no sequencing error (not a good assumption at all)
+#so PCR duplicates will also have matching CIGAR strings.
+#Also, remember that the first occurance of a read mapped to a given
+#position is NOT a PCR duplicate, only subsequent reads mapped there.
+#HINT: The file is already sorted by coordinates

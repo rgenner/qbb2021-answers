@@ -2,3 +2,4 @@ total number of alignments:  8128
 total number of perfect alignments:  7099
 average MAPQ scores:  58.36958661417323
 number of reads on chromosome 2L between bases 1000 and 2000:  7550
+number of replicates 8127
