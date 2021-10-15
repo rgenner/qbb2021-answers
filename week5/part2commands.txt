@@ -1,0 +1,25 @@
+Part 2: Motif discovery
+
+Motif finding: 
+
+Sort ER4_peaks.narrowPeak in numerically and in reverse order by 5th field (score):
+
+$sort -rn -k5 ER4_peaks.narrowPeak | head -n 100 > ER4_100.narrowPeak
+
+Extract corresponding sequences from FASTA file:
+
+$bedtools getfasta -fi mm10.fa.fai -bed ER4_100.narrowPeak -fo seqs100.fa
+
+Perform motif finding in strongest 100 peaks:
+
+meme-chip maxw 20 seqs100.fa 
+
+Scan these motifs against JASPAR CORE database using tomtom:
+
+$tomtom /Users/cmdb/qbb2021-answers/week5/jaspar/JASPAR2018_CORE_non-redundant_pfms_meme/MA* /Users/cmdb/qbb2021-answers/week5/memechip_out/meme_out/meme.txt
+
+Examine tomtom results file in web browser: 
+
+$cd tomtom_out/
+$open tomtom.html
+
