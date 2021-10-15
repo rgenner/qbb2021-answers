@@ -1,0 +1,43 @@
+Part 1: ChIP-seq
+
+Mapping reads:
+
+$bowtie2 -x mm10 -r CTCF_ER4.fastq -S CTCFER4mapped.SAM
+$bowtie2 -x mm10 -r CTCF_G1E.fastq -S CTCFG1Emapped.SAM
+$bowtie2 -x mm10 -r input_ER4.fastq -S inputER4mapped.SAM
+$bowtie2 -x mm10 -r input_G1E.fastq -S inputG1Emapped.SAM
+
+Calling peaks:
+
+$macs2 callpeak -t CTCFER4mapped.SAM -c inputER4mapped.SAM
+-n ER4 
+
+$macs2 callpeak -t CTCFG1Emapped.SAM -c inputG1Emapped.SAM -n G1E
+
+Differential binding:
+
+bedtools window -a G1E_peaks.narrowPeak -b ER4_peaks.narrowPeak > CTCFgained.bed
+
+bedtools subtract -a ER4_peaks.narrowPeak -b G1E_peaks.narrowPeak > CTCFlost.bed
+
+Feature overlapping: 
+
+$bedtools intersect -a Mus_musculus.GRCm38.94_features.bed -b G1E_peaks.narrowPeak > intersect_G1E.bed
+
+$bedtools intersect -a Mus_musculus.GRCm38.94_features.bed -b ER4_peaks.narrowPeak > intersect_ER4.bed
+
+
+Subset files to take 4th column (intron/exon/promoter):
+
+$awk '{print $4}' intersect_G1E.bed > G1Etypes.txt
+$awk '{print $4}' intersect_ER4.bed > ER4types.txt
+
+
+Obtain number of lines in CTCFgained and CTCFlost bed files:
+
+$wc -l CTCFgained.bed
+250 CTCFgained.bed
+
+$wc -l CTCFlost.bed
+	727 CTCFlost.bed
+
