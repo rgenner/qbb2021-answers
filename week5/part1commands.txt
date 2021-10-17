@@ -16,9 +16,9 @@ $macs2 callpeak -t CTCFG1Emapped.SAM -c inputG1Emapped.SAM -n G1E
 
 Differential binding:
 
-bedtools window -a G1E_peaks.narrowPeak -b ER4_peaks.narrowPeak > CTCFgained.bed
+bedtools window -a G1E_peaks.narrowPeak -b ER4_peaks.narrowPeak > CTCFlost.bed
 
-bedtools subtract -a ER4_peaks.narrowPeak -b G1E_peaks.narrowPeak > CTCFlost.bed
+bedtools subtract -a ER4_peaks.narrowPeak -b G1E_peaks.narrowPeak > CTCFgained.bed
 
 Feature overlapping: 
 
@@ -35,9 +35,9 @@ $awk '{print $4}' intersect_ER4.bed > ER4types.txt
 
 Obtain number of lines in CTCFgained and CTCFlost bed files:
 
-$wc -l CTCFgained.bed
-250 CTCFgained.bed
-
 $wc -l CTCFlost.bed
-	727 CTCFlost.bed
+250 CTCFlost.bed
+
+$wc -l CTCFgained.bed
+	727 CTCFgained.bed
 
