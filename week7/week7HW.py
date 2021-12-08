@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 
 import numpy as np
@@ -6,8 +5,14 @@ import pandas as pd
 import sys
 from fasta_reader import FASTAReader
 
+# Assuming three arguments: match score, mismatch score, and
+# gap penalty, store these arguments as variables we can use
+# in our script.
 
+# example input: ./week7HW.py CTCF_38_M27_DNA.fna HOXD70.txt -10 week7_alignment_DNA.txt
 
+#mismatch_score = float(sys.argv[2])
+gap_penalty = float(sys.argv[3]) # Should be negative
 gap_penalty = float(sys.argv[3]) # Should be negative #-10
 
 fasta = sys.argv[1]
@@ -29,8 +34,6 @@ max_matrix = np.empty((len(sequence1)+1, len(sequence2)+1), dtype='str')
 # first column, based on the gap penalty. Let's fill in the
 # first column.
 
-
-
 for i in range(len(sequence1)+1):
 	F_matrix[i,0] = i*gap_penalty
 
@@ -44,9 +47,6 @@ for i in range(1, len(sequence1)+1):
 
 for j in range(1, len(sequence2)+1):
     max_matrix[0,j] = "h"
-
-
-
 
 #=======================#
 # Populate the F-matrix #
@@ -79,19 +79,19 @@ seq1_alignment = ''
 seq2_alignment = ''
 
 while seq1_pos !=0 and seq2_pos !=0:
-    if max_matrix[seq1_pos, seq2_pos] == "d":
-        seq1_pos = seq1_pos-1
-        seq1_alignment = sequence1[seq1_pos] + seq1_alignment
-        seq2_pos = seq2_pos-1
-        seq2_alignment = sequence2[seq2_pos] + seq2_alignment
-    elif max_matrix[seq1_pos, seq2_pos] == "h":
-        seq1_alignment = "-" + seq1_alignment
-        seq2_alignment = sequence2[seq2_pos] + seq2_alignment
-        seq2_pos = seq2_pos-1
-    else:
-        seq1_alignment = sequence1[seq1_pos] + seq1_alignment
-        seq1_pos = seq1_pos -1
-        seq2_alignment = "-" + seq2_alignment
+	if max_matrix[seq1_pos, seq2_pos] == "d":
+		seq1_pos = seq1_pos-1
+		seq1_alignment = sequence1[seq1_pos] + seq1_alignment
+		seq2_pos = seq2_pos-1
+		seq2_alignment = sequence2[seq2_pos] + seq2_alignment
+	elif max_matrix[seq1_pos, seq2_pos] == "h":
+		seq1_alignment = "-" + seq1_alignment
+		seq2_pos = seq2_pos-1
+		seq2_alignment = sequence2[seq2_pos] + seq2_alignment
+	else:
+		seq1_pos = seq1_pos -1
+		seq1_alignment = sequence1[seq1_pos] + seq1_alignment
+		seq2_alignment = "-" + seq2_alignment
 
 output = sys.argv[4]
 
@@ -100,7 +100,6 @@ f.write(seq1_alignment)
 f.write("\n")
 f.write(seq2_alignment)
 f.close()
-
 
 #last val in F_matrix
 #count number of gaps
