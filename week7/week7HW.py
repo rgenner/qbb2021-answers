@@ -9,7 +9,7 @@ from fasta_reader import FASTAReader
 # gap penalty, store these arguments as variables we can use
 # in our script.
 
-# example input: ./week7HW.py CTCF_38_M27_DNA.fna HOXD70.txt -10 week7_alignment_DNA.txt
+# example input: ./week7HW.py CTCF_38_M27_DNA.fna HOXD70.txt -300 week7_alignment_DNA.txt
 
 #mismatch_score = float(sys.argv[2])
 gap_penalty = float(sys.argv[3]) # Should be negative
@@ -77,6 +77,9 @@ seq2_pos = len(sequence2)
 
 seq1_alignment = ''
 seq2_alignment = ''
+seq1_count = 0
+seq2_count = 0
+
 
 while seq1_pos !=0 and seq2_pos !=0:
 	if max_matrix[seq1_pos, seq2_pos] == "d":
@@ -86,14 +89,21 @@ while seq1_pos !=0 and seq2_pos !=0:
 		seq2_alignment = sequence2[seq2_pos] + seq2_alignment
 	elif max_matrix[seq1_pos, seq2_pos] == "h":
 		seq1_alignment = "-" + seq1_alignment
+		seq1_count += 1
 		seq2_pos = seq2_pos-1
 		seq2_alignment = sequence2[seq2_pos] + seq2_alignment
 	else:
 		seq1_pos = seq1_pos -1
 		seq1_alignment = sequence1[seq1_pos] + seq1_alignment
 		seq2_alignment = "-" + seq2_alignment
+		seq2_count += 1
 
 output = sys.argv[4]
+
+print("number of gaps in sequence 1 alignment = ", seq1_count)
+print("number of gaps in sequence 2 alignment = ", seq2_count)
+print("alignment score for sequence = ", F_matrix[-1,-1])
+
 
 f = open(output, "w")
 f.write(seq1_alignment)
