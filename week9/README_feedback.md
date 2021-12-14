@@ -6,3 +6,7 @@ You've got a great start here! Dendrogram and heatmap both look great and you're
 UPDATE 12-13-21: Nice work! For the qqplot, just make sure you include the line for the "expected distribution" (i.e. just a y=x line). It's difficult to visually compare your results to the null hypothesis without that line (-0.2). Also, we asked for a qqplot for the regression without sex as a covariate as well (-0.5)
 
 6.3/7
+
+Revisions: Added y=x line to qqplots
+tried to make a qqplot for regression with sex as a covariate?
+
