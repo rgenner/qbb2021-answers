@@ -1,3 +1,5 @@
+-12/13 great! 6/6
+
 Hi Rylee, 
 
 - For the left side of the panel, your values for ER4 are right, but the values for G1E look off. You could review your commands because it looks like you 
