@@ -6,3 +6,9 @@ used `bedtools windows` instead of `bedtools subtract` for that command. (-1)
 your command for `meme-chip`) (-0.5) 
 
 4.5/6
+
+Revisions: 
+•	Reran command with bedtools subtract (CTCFlost.bed now has 32 lines)
+•	Updated part1terminalcommands.txt to reflect that
+•	Updated jupyter notebook to reflect the new output
+
