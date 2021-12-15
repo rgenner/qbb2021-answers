@@ -10,3 +10,8 @@ UPDATE 12-13-21: Nice work! For the qqplot, just make sure you include the line 
 Revisions: Added y=x line to qqplots
 tried to make a qqplot for regression with sex as a covariate?
 
+UPDATE 12-14-21
+
+Great work!
+
+7/7
